@@ -4,9 +4,9 @@ import time
 
 def waitfacts(num_seconds=5):
     def waitfacts_(f):
-        def inner():
+        def inner(*args):
             pool = ThreadPool(processes=2)
-            t = pool.apply_async(func=f)
+            t = pool.apply_async(f, args)
             while not t.ready():
                 time.sleep(num_seconds)
                 print get_fact() + "\n"
